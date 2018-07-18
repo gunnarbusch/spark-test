@@ -8,7 +8,7 @@ click-plugins==1.0.3
 cligj==0.4.0
 docutils==0.14
 Flask==1.0.2
-geopyspark==0.4.2
+geopyspark
 itsdangerous==0.24
 Jinja2==2.10
 jmespath==0.9.3
