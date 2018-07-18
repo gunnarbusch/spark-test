@@ -2,6 +2,7 @@ FROM radanalyticsio/radanalytics-pyspark-py36:latest
 
 # Install conda
 
+USER root
 RUN yum -y update \
     && yum -y install curl bzip2 \
     && curl -sSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh \
@@ -13,13 +14,16 @@ RUN yum -y update \
     && rpm -e --nodeps curl bzip2 \
     && yum clean all
 
+USER root
 RUN conda install -c anaconda -c conda-forge flask numpy pyspark rasterio
-
+USER root
 RUN pip install geopyspark 
 # RUN geopyspark install-jar
 
+USER root
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 ADD . /usr/src/app
 
+USER 185
 CMD python app.py
