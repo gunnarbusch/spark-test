@@ -16,7 +16,7 @@ ENV PATH /opt/conda/bin:$PATH
 RUN conda install -c anaconda -c conda-forge flask numpy pyspark rasterio
 
 RUN pip install geopyspark 
-RUN geopyspark install-jar
+# RUN geopyspark install-jar
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

@@ -4,7 +4,7 @@ from flask import Flask
 from flask import request
 from pyspark.sql import SparkSession
 import rasterio
-import geopyspark as gps
+# import geopyspark as gps
 import numpy as np
 
 from pyspark import SparkContext
