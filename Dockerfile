@@ -25,6 +25,6 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 ADD . /usr/src/app
 
-USER 185
-ENTRYPOINT ["/opt/app-root/etc/bootstrap.sh"]
-CMD ["/usr/libexec/s2i/usage && python app.py"]
+# USER 185
+# ENTRYPOINT ["/opt/app-root/etc/bootstrap.sh"]
+# CMD ["/usr/libexec/s2i/usage && python app.py"]
