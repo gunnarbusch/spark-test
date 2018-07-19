@@ -2,11 +2,11 @@
 kind: Template
 apiVersion: v1
 metadata:
-  name: openeo-users
+  name: openeo-spark
   annotations:
-    openshift.io/display-name: openeo-users
+    openshift.io/display-name: openeo-spark
     description: >-
-      The templates instantiates the users service for openEO on OpenShift Origin.
+      The templates instantiates the spark service for openEO on OpenShift Origin.
     openshift.io/long-description: >-
       Multiple services are setup to provide the OpenEO capabilities. For setting up a
       OpenShift cluster and configure persitant storage please read the OpenShift documentation.
@@ -14,10 +14,10 @@ metadata:
     tags: openeo, openshift, python, flask
     iconClass: icon-python
 labels:
-  application: openeo-users
+  application: openeo-spark
   provider: openeo
   project: openeo
-  app: openeo-users
+  app: openeo-spark
   version: 0.0.1
 message: "The openEO template will be instantiated." 
 
@@ -28,10 +28,8 @@ parameters:
   required: true
 - name: SERVICE_NAME
   displayName: Service Name
-  value: users
+  value: spark
   required: true
-
-### SERVICE ####
 - name: GIT_URI
   displayName: Git URI
   value: https://github.com/gunnarbusch/spark-test
@@ -50,7 +48,6 @@ parameters:
   required: true
 
 objects:
-### SERVICE ####
 - kind: ImageStream
   apiVersion: v1
   metadata:

@@ -2,18 +2,20 @@ import os
 
 from flask import Flask
 from flask import request
-from pyspark.sql import SparkSession
-import rasterio
+from pyspark import SparkConf, SparkContext
+# import rasterio
 # import geopyspark as gps
-import numpy as np
+# import numpy as np
 
-from pyspark import SparkContext
+# from pyspark import SparkContext
 
 app = Flask(__name__)
 
 
 def produce_pi(scale):
-    spark = SparkSession.builder.appName("PythonPi").getOrCreate()
+    conf = SparkConf().setAppName('hello').setMaster('spark://spark-test:7077')
+    spark = SparkContext(conf=conf)
+
     n = 100000 * scale
 
     def f(_):
@@ -22,8 +24,8 @@ def produce_pi(scale):
         y = random()
         return 1 if x ** 2 + y ** 2 <= 1 else 0
 
-    count = spark.sparkContext.parallelize(
-        xrange(1, n + 1), scale).map(f).reduce(lambda x, y: x + y)
+    count = spark.parallelize(
+        range(1, n + 1), scale).map(f).reduce(lambda x, y: x + y)
     spark.stop()
     pi = 4.0 * count / n
     return pi
