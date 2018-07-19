@@ -128,3 +128,28 @@ objects:
             privileged: false
         restartPolicy: Always
         dnsPolicy: ClusterFirst
+
+- kind: Route
+  apiVersion: v1
+  metadata:
+    name: "${SERVICE_PREFIX}-${SERVICE_NAME}"
+    annotations:
+      description: openEO Spark endpoint
+  spec:
+    to:
+      kind: Service
+      name: "${SERVICE_PREFIX}-${SERVICE_NAME}"
+
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: "${SERVICE_PREFIX}-${SERVICE_NAME}"
+    annotations:
+      description: The port of the spark endpoint
+  spec:
+    ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+    selector:
+      name: "${SERVICE_PREFIX}-${SERVICE_NAME}"
