@@ -6,6 +6,8 @@ RUN conda install -c anaconda -c conda-forge flask pyspark
 # RUN geopyspark install-jar
 
 RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
 ADD . /usr/src/app
 
 CMD python app.py
